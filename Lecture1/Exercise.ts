@@ -215,3 +215,4 @@ console.log(toBase(9)(46) === "51" ? "Test passed" : "Test failed");
 console.log(toBase(10)(155) === "155" ? "Test passed" : "Test failed");
 
 console.log("Test toBase: done");
+console.log("All tests passed");

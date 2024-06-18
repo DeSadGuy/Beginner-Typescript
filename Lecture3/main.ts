@@ -1,10 +1,5 @@
 // classic single linked list
 
-type List<T> = {
-  value: T;
-  next: List<T> | null;
-}
-
 
 
 // testing some stuff 
