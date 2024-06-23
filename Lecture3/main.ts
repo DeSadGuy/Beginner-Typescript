@@ -1,20 +1,63 @@
 // classic single linked list
-
-
-
-// testing some stuff 
-const addUncurried : (t : [number, number]) => number = ([a, b]) => a + b;
-const testadd = ([a,b] : [number, number]) => a + b;
-
-// syntax for function 
-const sumname: (a: number, b: number) => number = (a: number, b: number) => a + b;
-const addfull: (args: [number, number]) => number = ([a, b]) => a + b;
-
-//const add = (a: number) => (b: number) => (c: number) => a + b + c;
-
-const addspecial: (a: number) => (b: number) => (c: number) => number = (a) => (b) => (c) => a + b + c ;
-
-let user = {
-  name: 'John',
-  age: 30
+// Single Linked List 
+export type List<T> = {
+  kind: "empty"
+}   
+  | // or
+{
+  kind: "list", 
+  head: T, 
+  tail: List<T>
 };
+
+// Create Optional value
+export type Option<T> = {
+  kind: "none"
+}
+  | // or
+{
+  kind: "some",
+  value: T
+};
+
+
+// create linked list from array
+export const list = <T>(array: T[]): List<T> => {
+  if (array.length === 0) {
+      return { kind: "empty" };
+  }
+  else if (array.length === 1) {
+      return { kind: "list", head: array[0], tail: { kind: "empty" } };
+  }
+  else {
+      return { kind: "list", head: array[0], tail: list(array.slice(1)) };
+  }
+
+}
+
+// check the length of linked list
+export const listLength = <T>(l: List<T>) : number => {
+  if (l.kind === "empty") {
+      return 0;
+  }
+  return 1 + listLength(l.tail);
+}
+
+export const sumList = (l: List<number>) : number => {
+  if (l.kind === "empty") {
+      return 0;
+  }
+  return l.head + sumList(l.tail);
+}
+
+export const printList = <T>(l: List<T>) : void => {
+  if (l.kind === "empty") {
+      return;
+  }
+  process.stdout.write(l.head + " ",);
+  printList(l.tail);
+}
+
+
+
+

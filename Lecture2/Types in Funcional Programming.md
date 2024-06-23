@@ -16,6 +16,17 @@ This is a continuation of the previous chapter. In this chapter, we will explore
 
 > Please note that this document is created by a student for educational purposes, and there is no guarantee that the information is correct. If you find any mistakes, please contact me.
 
+# Table of Contents 
+
+- Immutable Data Structures
+- Tuples
+- Currying, Partial Application, and Uncurrying
+- Records
+- Special Features of Types and Interfaces
+- Record Copy and Update
+- Big Example - Case Study: Tanks and Guns
+
+
 ## Immutable Data Structures
 
 In functional programming, it is crucial to understand the concept of immutability. Changing state or memory can lead to bugs, so it is best to avoid it. Refer to the previous chapter for more information on this topic: [Introduction to functional programming](../Lecture1/Introduction%20to%20functional%20programming.md)
