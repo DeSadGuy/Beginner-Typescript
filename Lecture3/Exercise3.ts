@@ -1,5 +1,4 @@
-import { List, Option, list, listLength, sumList, printList } from "./main";
-
+import { List, Option, list, printList, listLength } from "./main";
 // Exercise 1 
 // return last element of a list
 const last: <T>(list: List<T>) => Option<T> = (list) => {
@@ -134,35 +133,63 @@ const shiftChar: (c: string) => (shift: number) => string = c => shift => {
 };
 
 // Exercise 8
-
-const splitAt: <T>(i: number) => (l: List<T>) => [List<T>, List<T>] = i => l => {
-
+// take number and list and split the list at the given number
+const splitAt: <T>(i: number) => <T>(l: List<T>) => [List<T>, List<T>] = i => l => {
+    if (i === 0){
+        return [{kind: "empty"}, l];
+    }
+    else if (l.kind === "empty"){
+        return [{kind: "empty"}, {kind: "empty"}];
+    }
+    else {
+        const [first, second] = splitAt(i - 1)(l.tail);
+        return [{kind: "list", head: l.head, tail: first}, second];
+    }
 };
 // Exercise 9
-
+// merge 2 sorted lists into a single sorted list	
 const Merge: <T>(l1: List<T>) => (l2: List<T>) => List<T> = l1 => l2 => {
+    if (l1.kind === "empty") {
+        return l2;
+    }
+    else if (l2.kind === "empty") {
+        return l1;
+    }
+    else if (l1.head > l2.head) {
+        return {kind: "list", head: l2.head, tail: Merge(l1)(l2.tail)};
+    }
+    else{ 
+        return {kind: "list", head: l1.head, tail: Merge(l1.tail)(l2)};
+    }
 };
 
 // Exercise 10
-
+// return a sorted list using merge sort
 const MergeSort: <T>(l:List<T>) => List<T> = l => {
+    if (l.kind === "empty" || l.tail.kind === "empty") {
+        return l;
+    }
+    else {
+        const [first, second] = splitAt(Math.floor(listLength(l) / 2))(l);
+        return Merge(MergeSort(first))(MergeSort(second));
+    }
 }
 
 // Exercise 11
+// 
+// const eval: (expr: Expr) => Expr = expr => {
+// }
 
-const eval: (expr: Expr) => Expr = expr => {
-}
+// // Exercise 12
 
-// Exercise 12
+// const eval2: (expr: Expr) => (stack : List<[string, number]>) => number = expr => stack => {
 
-const eval2: (expr: Expr) => (stack : List<[string, number]>) => number = expr => stack => {
+// };
+// // Exercise 13
 
-};
-// Exercise 13
-
-const run: (program: List<Statement>) => (stack : List<[string, number]>) => List<[string, number]> = program => stack => {
+// const run: (program: List<Statement>) => (stack : List<[string, number]>) => List<[string, number]> = program => stack => {
     
-};
+// };
 
 
 
@@ -183,4 +210,10 @@ console.log(printList(compress(list([1, 1, 2, 3, 3, 4, 4, 4])))); // 1, 2, 3, 4
 console.log(printList(compress(list([1, 2, 3, 4, 5])))); // 1, 2, 3, 4, 5
 console.log(printList(caesarCypher(list(["H","e","l","l","o","W","o","r","l","d","!"]))(3))); // Khoor Zruog!
 console.log(printList(caesarCypher(list(["H","e","l","l","o","W","o","r","l","d","!"]))(26))); // Hello World!
+console.log(printList(caesarCypher(list(["H","e","l","l","o","W","o","r","l","d","!"]))(0))); // Hello World!
+console.log(printList(caesarCypher(list(["H","e","l","l","o","W","o","r","l","d","!"]))(52))); // Hello World!
+console.log(splitAt(5)(testList1)); // [1, 2, 3, 4, 5], [6, 7, 8, 9, 10]
+console.log(printList(Merge(list([1, 3, 5, 7, 9]))(list([2, 4, 6, 8, 10])))); // 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+console.log(printList(MergeSort(list([5, 3, 8, 1, 9, 2, 7, 4, 6])))); // 1, 2, 3, 4, 5, 6, 7, 8,
+
 

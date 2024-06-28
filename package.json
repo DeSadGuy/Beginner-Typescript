@@ -1,0 +1,13 @@
+{
+  "name": "Beginner-TypescriptYarn",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/DeSadGuy/Beginner-Typescript.git",
+  "author": "Devin Chen Student",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^20.14.9",
+    "typescript": "^5.5.2",
+    "undici": "^6.19.2"
+  }
+}

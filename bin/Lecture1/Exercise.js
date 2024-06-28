@@ -1,6 +1,7 @@
-// return a string containing all numbers from 0 to n. 
-// Separate each number with a whitespace.
-// 
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+// Exercise 1
+// return a string containing all numbers from 0 to n.  Separate each number with a whitespace.
 function allNumber(n) {
     if (n <= 0) {
         return "0";
@@ -16,9 +17,8 @@ console.log(allNumber(1) === "0 1" ? "Test passed" : "Test failed");
 console.log(allNumber(2) === "0 1 2" ? "Test passed" : "Test failed");
 console.log(allNumber(3) === "0 1 2 3" ? "Test passed" : "Test failed");
 console.log("Test allNumber: done");
-// return a string conaining all numbers from n to 0.
-// Separate each number with a whitespace.
-// do this reverse order 
+// Exercise 2
+// returns a string containing all numbers from n to 0. Separate each number with a whitespace. 
 function allNumberRev(n) {
     if (n <= 0) {
         return "0";
@@ -34,7 +34,8 @@ console.log(allNumberRev(1) === "1 0" ? "Test passed" : "Test failed");
 console.log(allNumberRev(2) === "2 1 0" ? "Test passed" : "Test failed");
 console.log(allNumberRev(3) === "3 2 1 0" ? "Test passed" : "Test failed");
 console.log("Test allNumberRev: done");
-//that returns a string containing all numbers from n to 0. Separate the numbers with a white space.
+// Exercise 3 
+// returns a string containing all numbers from 0 to n. Separate each number with a whitespace.
 function allNumberRange(lower) {
     return function InnerLoop(upper) {
         if (upper <= lower) {
@@ -52,7 +53,8 @@ console.log(allNumberRange(0)(1) === "0 1" ? "Test passed" : "Test failed");
 console.log(allNumberRange(0)(2) === "0 1 2" ? "Test passed" : "Test failed");
 console.log(allNumberRange(0)(3) === "0 1 2 3" ? "Test passed" : "Test failed");
 console.log("Test allNumberRange: done");
-//that returns a string containing all numbers between lower and upper in reverse order. Separate the numbers with a white space.
+// Exercise 4
+// returns a string containing all numbers from n to 0. Separate each number with a whitespace.
 function allNumberRangeRev(lower) {
     return function innerLoop(upper) {
         if (upper <= lower) {
@@ -70,9 +72,8 @@ console.log(allNumberRangeRev(0)(1) === "1 0" ? "Test passed" : "Test failed");
 console.log(allNumberRangeRev(0)(2) === "2 1 0" ? "Test passed" : "Test failed");
 console.log(allNumberRangeRev(0)(3) === "3 2 1 0" ? "Test passed" : "Test failed");
 console.log("Test allNumberRangeRev: done");
-// return a string containing all even numbers from 0 to n.
-// Separate each number with a whitespace.
-// ??? 
+// exercise 5
+// return a string containing all even numbers between lower and upper (inclusive). Separate each number with a whitespace.
 function allEvenRange(lower) {
     return function innerLoop(upper) {
         if (upper <= lower) {
@@ -93,7 +94,8 @@ console.log(allEvenRange(0)(1) === "0" ? "Test passed" : "Test failed");
 console.log(allEvenRange(0)(2) === "0 2" ? "Test passed" : "Test failed");
 console.log(allEvenRange(0)(3) === "0 2" ? "Test passed" : "Test failed");
 console.log("Test allEvenRange: done");
-// return a string containing length asterisks 
+// exercise 6
+// returns a string containing length of * symbols.
 function drawLine(length) {
     if (length <= 0) {
         return "";
@@ -108,7 +110,8 @@ console.log(drawLine(0) === "" ? "Test passed" : "Test failed");
 console.log(drawLine(1) === "*" ? "Test passed" : "Test failed");
 console.log(drawLine(2) === "**" ? "Test passed" : "Test failed");
 console.log(drawLine(3) === "***" ? "Test passed" : "Test failed");
-// return a string containing length repetition of symbol 
+// exercise 7
+// returns a string containing length of symbol.
 function drawSymbols(symbol) {
     return function innerLoop(length) {
         if (length <= 0) {
@@ -119,15 +122,22 @@ function drawSymbols(symbol) {
         }
     };
 }
+const drawSymbols2 = s => l => {
+    if (l <= 0) {
+        return "";
+    }
+    else {
+        return drawSymbols2(s)(l - 1) + s.toString();
+    }
+};
 console.log("Test drawSymbols: ");
 console.log(drawSymbols("*")(5) === "*****" ? "Test passed" : "Test failed");
 console.log(drawSymbols("*")(0) === "" ? "Test passed" : "Test failed");
 console.log(drawSymbols("6")(6) === "666666" ? "Test passed" : "Test failed");
 console.log(drawSymbols("?")(2) === "??" ? "Test passed" : "Test failed");
 console.log(drawSymbols("!")(3) === "!!!" ? "Test passed" : "Test failed");
-// return a string containing the binary representation of the input number( n >= 0). the binary representation is obtained using the following proceure: 
-// 1. add to the end of the string the remainde of the division between the current number and 2. 
-// 2. repeat the previouse step with `*n / 2*` until the number is 0.
+// exercise 8 
+// returns a string containing representation of binairy number. number must be positive. 
 function toBinary(n) {
     if (n < 0) {
         return "";
@@ -145,6 +155,7 @@ console.log(toBinary(0) === "0" ? "Test passed" : "Test failed");
 console.log(toBinary(1) === "1" ? "Test passed" : "Test failed");
 console.log(toBinary(2) === "10" ? "Test passed" : "Test failed");
 console.log(toBinary(3) === "11" ? "Test passed" : "Test failed");
+// exercise 9
 // that returns a string containing the representation of the input number in an arbitrary base (the number must be positive). The algorithm is the same as above except you must take the remainder of `n` divided by `base` and pass `n / base` to the next step.
 function toBase(base) {
     return function innerLoop(n) {

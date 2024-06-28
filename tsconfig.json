@@ -3,7 +3,10 @@
         "sourceMap": true, //sourceMap is a file that maps from the transpiled JavaScript back to the original TypeScript. This is useful for debugging.
         "outDir": "./bin", //The directory where the output files are to be placed.
         "target": "ES2020", //The version of the ECMAScript that the output files are to be compatible with.
-        "noImplicitAny": true // Raise error on expressions and declarations with an implied 'any' type.
+        "noImplicitAny": true, // Raise error on expressions and declarations with an implied 'any' type.
+        "moduleResolution": "NodeNext", //Specifies how modules are resolved.
+        "module": "NodeNext", //Specifies what module code is generated.
+        
 
     }
 }
