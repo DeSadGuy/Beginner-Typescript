@@ -128,6 +128,9 @@ const splitAt = i => l => {
     if (i === 0) {
         return [{ kind: "empty" }, l];
     }
+    else if (i < 0) {
+        return [{ kind: "empty" }, l];
+    }
     else if (l.kind === "empty") {
         return [{ kind: "empty" }, { kind: "empty" }];
     }
@@ -159,7 +162,7 @@ const MergeSort = l => {
         return l;
     }
     else {
-        const [first, second] = splitAt((0, main_1.listLength)(l) / 2)(l);
+        const [first, second] = splitAt(Math.floor((0, main_1.listLength)(l) / 2))(l);
         return Merge(MergeSort(first))(MergeSort(second));
     }
 };

@@ -138,6 +138,9 @@ const splitAt: <T>(i: number) => <T>(l: List<T>) => [List<T>, List<T>] = i => l 
     if (i === 0){
         return [{kind: "empty"}, l];
     }
+    else if (i < 0){
+        return [{kind: "empty"}, l];
+    }
     else if (l.kind === "empty"){
         return [{kind: "empty"}, {kind: "empty"}];
     }
